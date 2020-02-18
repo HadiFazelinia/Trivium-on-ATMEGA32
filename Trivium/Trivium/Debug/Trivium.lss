@@ -1,0 +1,764 @@
+
+Trivium.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000003c6  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000014  00800060  000003c6  0000045a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000025  00800074  00800074  0000046e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000046e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000004a0  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000a8  00000000  00000000  000004dc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000be7  00000000  00000000  00000584  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000007d4  00000000  00000000  0000116b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000004df  00000000  00000000  0000193f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000017c  00000000  00000000  00001e20  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000041f  00000000  00000000  00001f9c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000665  00000000  00000000  000023bb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000078  00000000  00000000  00002a20  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 ec       	ldi	r30, 0xC6	; 198
+  68:	f3 e0       	ldi	r31, 0x03	; 3
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a4 37       	cpi	r26, 0x74	; 116
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a4 e7       	ldi	r26, 0x74	; 116
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a9 39       	cpi	r26, 0x99	; 153
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 e1 01 	jmp	0x3c2	; 0x3c2 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+
+unsigned char key[20] = "We did it. :) And we";
+
+int main(void)
+{
+	UART_Init(9600);
+  92:	60 e8       	ldi	r22, 0x80	; 128
+  94:	75 e2       	ldi	r23, 0x25	; 37
+  96:	80 e0       	ldi	r24, 0x00	; 0
+  98:	90 e0       	ldi	r25, 0x00	; 0
+  9a:	0e 94 af 01 	call	0x35e	; 0x35e <UART_Init>
+
+	//Initialization
+	init_func(key);
+  9e:	80 e6       	ldi	r24, 0x60	; 96
+  a0:	90 e0       	ldi	r25, 0x00	; 0
+  a2:	0e 94 13 01 	call	0x226	; 0x226 <init_func>
+
+	//Warm-up Phase
+	warmup_func();
+  a6:	0e 94 3a 01 	call	0x274	; 0x274 <warmup_func>
+
+	//Encryption Phase
+	char plain_character, cipher_character;
+    while (1) 
+    {
+		plain_character = UART_RxChar();
+  aa:	0e 94 b7 01 	call	0x36e	; 0x36e <UART_RxChar>
+		cipher_character = encrypt(plain_character);
+  ae:	0e 94 45 01 	call	0x28a	; 0x28a <encrypt>
+		UART_TxChar(cipher_character);
+  b2:	0e 94 bb 01 	call	0x376	; 0x376 <UART_TxChar>
+  b6:	f9 cf       	rjmp	.-14     	; 0xaa <main+0x18>
+
+000000b8 <shift_func>:
+#include "trivium.h"
+
+bool shift_func(unsigned char reg[], int size)
+{
+  b8:	0f 93       	push	r16
+  ba:	1f 93       	push	r17
+  bc:	cf 93       	push	r28
+  be:	df 93       	push	r29
+  c0:	dc 01       	movw	r26, r24
+	int i = 0;
+	bool bit = false;
+	
+	for(i = size - 1; i > 0; i--)
+  c2:	cb 01       	movw	r24, r22
+  c4:	01 97       	sbiw	r24, 0x01	; 1
+  c6:	18 16       	cp	r1, r24
+  c8:	19 06       	cpc	r1, r25
+  ca:	8c f4       	brge	.+34     	; 0xee <shift_func+0x36>
+  cc:	fc 01       	movw	r30, r24
+  ce:	ea 0f       	add	r30, r26
+  d0:	fb 1f       	adc	r31, r27
+  d2:	ad 01       	movw	r20, r26
+  d4:	31 97       	sbiw	r30, 0x01	; 1
+	{
+		bit = reg[i - 1] & 0x80;
+		reg[i] <<= 1;
+  d6:	91 81       	ldd	r25, Z+1	; 0x01
+  d8:	99 0f       	add	r25, r25
+
+		if(bit)
+  da:	20 81       	ld	r18, Z
+  dc:	22 23       	and	r18, r18
+  de:	14 f0       	brlt	.+4      	; 0xe4 <shift_func+0x2c>
+	bool bit = false;
+	
+	for(i = size - 1; i > 0; i--)
+	{
+		bit = reg[i - 1] & 0x80;
+		reg[i] <<= 1;
+  e0:	91 83       	std	Z+1, r25	; 0x01
+  e2:	02 c0       	rjmp	.+4      	; 0xe8 <shift_func+0x30>
+
+		if(bit)
+		reg[i] |= 0x01;
+  e4:	91 60       	ori	r25, 0x01	; 1
+  e6:	91 83       	std	Z+1, r25	; 0x01
+bool shift_func(unsigned char reg[], int size)
+{
+	int i = 0;
+	bool bit = false;
+	
+	for(i = size - 1; i > 0; i--)
+  e8:	e4 17       	cp	r30, r20
+  ea:	f5 07       	cpc	r31, r21
+  ec:	99 f7       	brne	.-26     	; 0xd4 <shift_func+0x1c>
+		if(bit)
+		reg[i] |= 0x01;
+		else
+		reg[i] &= 0xfe;
+	}
+	reg[0] <<= 1;
+  ee:	8c 91       	ld	r24, X
+  f0:	88 0f       	add	r24, r24
+  f2:	8c 93       	st	X, r24
+	
+	bool result = false;
+
+	if (size == 12)
+  f4:	6c 30       	cpi	r22, 0x0C	; 12
+  f6:	71 05       	cpc	r23, r1
+  f8:	99 f4       	brne	.+38     	; 0x120 <shift_func+0x68>
+	{
+		result = reg[11] & 0x20;
+		result ^= (reg[11] & 0x10) & (reg[11] & 0x08);
+		result ^= reg[8] & 0x02;
+  fa:	1b 96       	adiw	r26, 0x0b	; 11
+  fc:	8c 91       	ld	r24, X
+  fe:	1b 97       	sbiw	r26, 0x0b	; 11
+ 100:	85 fb       	bst	r24, 5
+ 102:	88 27       	eor	r24, r24
+ 104:	80 f9       	bld	r24, 0
+ 106:	c8 2f       	mov	r28, r24
+ 108:	80 e0       	ldi	r24, 0x00	; 0
+ 10a:	d8 2f       	mov	r29, r24
+ 10c:	18 96       	adiw	r26, 0x08	; 8
+ 10e:	2c 91       	ld	r18, X
+ 110:	22 70       	andi	r18, 0x02	; 2
+ 112:	30 e0       	ldi	r19, 0x00	; 0
+ 114:	81 e0       	ldi	r24, 0x01	; 1
+ 116:	2c 17       	cp	r18, r28
+ 118:	3d 07       	cpc	r19, r29
+ 11a:	79 f5       	brne	.+94     	; 0x17a <shift_func+0xc2>
+ 11c:	80 e0       	ldi	r24, 0x00	; 0
+ 11e:	2d c0       	rjmp	.+90     	; 0x17a <shift_func+0xc2>
+	}
+
+	else if (size == 11)
+ 120:	6b 30       	cpi	r22, 0x0B	; 11
+ 122:	71 05       	cpc	r23, r1
+ 124:	89 f4       	brne	.+34     	; 0x148 <shift_func+0x90>
+	{
+		result = reg[10] & 0x10;
+		result ^= (reg[10] & 0x08) & (reg[10] & 0x04);
+		result ^= reg[8] & 0x10;
+ 126:	1a 96       	adiw	r26, 0x0a	; 10
+ 128:	8c 91       	ld	r24, X
+ 12a:	1a 97       	sbiw	r26, 0x0a	; 10
+ 12c:	84 fb       	bst	r24, 4
+ 12e:	00 27       	eor	r16, r16
+ 130:	00 f9       	bld	r16, 0
+ 132:	10 e0       	ldi	r17, 0x00	; 0
+ 134:	18 96       	adiw	r26, 0x08	; 8
+ 136:	2c 91       	ld	r18, X
+ 138:	20 71       	andi	r18, 0x10	; 16
+ 13a:	30 e0       	ldi	r19, 0x00	; 0
+ 13c:	81 e0       	ldi	r24, 0x01	; 1
+ 13e:	20 17       	cp	r18, r16
+ 140:	31 07       	cpc	r19, r17
+ 142:	d9 f4       	brne	.+54     	; 0x17a <shift_func+0xc2>
+ 144:	80 e0       	ldi	r24, 0x00	; 0
+ 146:	19 c0       	rjmp	.+50     	; 0x17a <shift_func+0xc2>
+	}
+
+	else if (size == 14)
+ 148:	6e 30       	cpi	r22, 0x0E	; 14
+ 14a:	71 05       	cpc	r23, r1
+ 14c:	a9 f4       	brne	.+42     	; 0x178 <shift_func+0xc0>
+	{
+		result = reg[13] & 0x80;
+		result ^= (reg[13] & 0x40) & (reg[13] & 0x02);
+		result ^= reg[8] & 0x02;
+ 14e:	1d 96       	adiw	r26, 0x0d	; 13
+ 150:	8c 91       	ld	r24, X
+ 152:	1d 97       	sbiw	r26, 0x0d	; 13
+ 154:	08 2e       	mov	r0, r24
+ 156:	00 0c       	add	r0, r0
+ 158:	99 0b       	sbc	r25, r25
+ 15a:	49 2f       	mov	r20, r25
+ 15c:	44 1f       	adc	r20, r20
+ 15e:	44 27       	eor	r20, r20
+ 160:	44 1f       	adc	r20, r20
+ 162:	50 e0       	ldi	r21, 0x00	; 0
+ 164:	18 96       	adiw	r26, 0x08	; 8
+ 166:	2c 91       	ld	r18, X
+ 168:	22 70       	andi	r18, 0x02	; 2
+ 16a:	30 e0       	ldi	r19, 0x00	; 0
+ 16c:	81 e0       	ldi	r24, 0x01	; 1
+ 16e:	24 17       	cp	r18, r20
+ 170:	35 07       	cpc	r19, r21
+ 172:	19 f4       	brne	.+6      	; 0x17a <shift_func+0xc2>
+ 174:	80 e0       	ldi	r24, 0x00	; 0
+ 176:	01 c0       	rjmp	.+2      	; 0x17a <shift_func+0xc2>
+		else
+		reg[i] &= 0xfe;
+	}
+	reg[0] <<= 1;
+	
+	bool result = false;
+ 178:	80 e0       	ldi	r24, 0x00	; 0
+		result ^= (reg[13] & 0x40) & (reg[13] & 0x02);
+		result ^= reg[8] & 0x02;
+	}
+
+	return result;
+}
+ 17a:	df 91       	pop	r29
+ 17c:	cf 91       	pop	r28
+ 17e:	1f 91       	pop	r17
+ 180:	0f 91       	pop	r16
+ 182:	08 95       	ret
+
+00000184 <feed_func>:
+
+void feed_func(unsigned char reg[], bool bit)
+{
+	if(bit)
+ 184:	66 23       	and	r22, r22
+ 186:	29 f0       	breq	.+10     	; 0x192 <feed_func+0xe>
+	reg[0] |= 0x01;
+ 188:	fc 01       	movw	r30, r24
+ 18a:	20 81       	ld	r18, Z
+ 18c:	21 60       	ori	r18, 0x01	; 1
+ 18e:	20 83       	st	Z, r18
+ 190:	08 95       	ret
+
+	else
+	reg[0] &= 0xFE;
+ 192:	fc 01       	movw	r30, r24
+ 194:	20 81       	ld	r18, Z
+ 196:	2e 7f       	andi	r18, 0xFE	; 254
+ 198:	20 83       	st	Z, r18
+ 19a:	08 95       	ret
+
+0000019c <clock_func>:
+}
+
+bool clock_func()
+{
+ 19c:	ef 92       	push	r14
+ 19e:	ff 92       	push	r15
+ 1a0:	0f 93       	push	r16
+ 1a2:	1f 93       	push	r17
+ 1a4:	cf 93       	push	r28
+ 1a6:	df 93       	push	r29
+	bool feedbackA = regA[8] & 0x10;
+ 1a8:	10 91 8a 00 	lds	r17, 0x008A	; 0x80008a <regA+0x8>
+ 1ac:	12 95       	swap	r17
+ 1ae:	11 70       	andi	r17, 0x01	; 1
+	bool feedbackB = regB[9] & 0x20;
+ 1b0:	d0 91 97 00 	lds	r29, 0x0097	; 0x800097 <regB+0x9>
+ 1b4:	d5 fb       	bst	r29, 5
+ 1b6:	dd 27       	eor	r29, r29
+ 1b8:	d0 f9       	bld	r29, 0
+	bool feedbackC = regC[10] & 0x40;
+ 1ba:	c0 91 7e 00 	lds	r28, 0x007E	; 0x80007e <__data_end+0xa>
+ 1be:	c6 fb       	bst	r28, 6
+ 1c0:	cc 27       	eor	r28, r28
+ 1c2:	c0 f9       	bld	r28, 0
+
+	bool outA = shift_func(regA, 12);
+ 1c4:	6c e0       	ldi	r22, 0x0C	; 12
+ 1c6:	70 e0       	ldi	r23, 0x00	; 0
+ 1c8:	82 e8       	ldi	r24, 0x82	; 130
+ 1ca:	90 e0       	ldi	r25, 0x00	; 0
+ 1cc:	0e 94 5c 00 	call	0xb8	; 0xb8 <shift_func>
+ 1d0:	e8 2e       	mov	r14, r24
+	bool outB = shift_func(regB, 11);
+ 1d2:	6b e0       	ldi	r22, 0x0B	; 11
+ 1d4:	70 e0       	ldi	r23, 0x00	; 0
+ 1d6:	8e e8       	ldi	r24, 0x8E	; 142
+ 1d8:	90 e0       	ldi	r25, 0x00	; 0
+ 1da:	0e 94 5c 00 	call	0xb8	; 0xb8 <shift_func>
+ 1de:	08 2f       	mov	r16, r24
+	bool outC = shift_func(regC, 14);
+ 1e0:	6e e0       	ldi	r22, 0x0E	; 14
+ 1e2:	70 e0       	ldi	r23, 0x00	; 0
+ 1e4:	84 e7       	ldi	r24, 0x74	; 116
+ 1e6:	90 e0       	ldi	r25, 0x00	; 0
+ 1e8:	0e 94 5c 00 	call	0xb8	; 0xb8 <shift_func>
+ 1ec:	f8 2e       	mov	r15, r24
+
+	feed_func(regA, feedbackA ^ outC);
+ 1ee:	61 2f       	mov	r22, r17
+ 1f0:	68 27       	eor	r22, r24
+ 1f2:	82 e8       	ldi	r24, 0x82	; 130
+ 1f4:	90 e0       	ldi	r25, 0x00	; 0
+ 1f6:	0e 94 c2 00 	call	0x184	; 0x184 <feed_func>
+	feed_func(regB, feedbackB ^ outA);
+ 1fa:	6d 2f       	mov	r22, r29
+ 1fc:	6e 25       	eor	r22, r14
+ 1fe:	8e e8       	ldi	r24, 0x8E	; 142
+ 200:	90 e0       	ldi	r25, 0x00	; 0
+ 202:	0e 94 c2 00 	call	0x184	; 0x184 <feed_func>
+	feed_func(regC, feedbackC ^ outB);
+ 206:	6c 2f       	mov	r22, r28
+ 208:	60 27       	eor	r22, r16
+ 20a:	84 e7       	ldi	r24, 0x74	; 116
+ 20c:	90 e0       	ldi	r25, 0x00	; 0
+ 20e:	0e 94 c2 00 	call	0x184	; 0x184 <feed_func>
+
+	return outA ^ outB ^ outC;
+ 212:	8e 2d       	mov	r24, r14
+ 214:	80 27       	eor	r24, r16
+}
+ 216:	8f 25       	eor	r24, r15
+ 218:	df 91       	pop	r29
+ 21a:	cf 91       	pop	r28
+ 21c:	1f 91       	pop	r17
+ 21e:	0f 91       	pop	r16
+ 220:	ff 90       	pop	r15
+ 222:	ef 90       	pop	r14
+ 224:	08 95       	ret
+
+00000226 <init_func>:
+
+void init_func(unsigned char key[])
+{
+ 226:	dc 01       	movw	r26, r24
+ 228:	e2 e8       	ldi	r30, 0x82	; 130
+ 22a:	f0 e0       	ldi	r31, 0x00	; 0
+ 22c:	4c e8       	ldi	r20, 0x8C	; 140
+ 22e:	50 e0       	ldi	r21, 0x00	; 0
+	int i = 0;
+
+	for (i = 0; i < 10; i++)
+	regA[i] = key[i];
+ 230:	2d 91       	ld	r18, X+
+ 232:	21 93       	st	Z+, r18
+
+void init_func(unsigned char key[])
+{
+	int i = 0;
+
+	for (i = 0; i < 10; i++)
+ 234:	e4 17       	cp	r30, r20
+ 236:	f5 07       	cpc	r31, r21
+ 238:	d9 f7       	brne	.-10     	; 0x230 <init_func+0xa>
+ 23a:	dc 01       	movw	r26, r24
+ 23c:	1a 96       	adiw	r26, 0x0a	; 10
+ 23e:	ee e8       	ldi	r30, 0x8E	; 142
+ 240:	f0 e0       	ldi	r31, 0x00	; 0
+ 242:	28 e9       	ldi	r18, 0x98	; 152
+ 244:	30 e0       	ldi	r19, 0x00	; 0
+	regA[i] = key[i];
+	
+	for (i = 10; i < 20; i++)
+	regB[i - 10] = key[i];
+ 246:	8d 91       	ld	r24, X+
+ 248:	81 93       	st	Z+, r24
+	int i = 0;
+
+	for (i = 0; i < 10; i++)
+	regA[i] = key[i];
+	
+	for (i = 10; i < 20; i++)
+ 24a:	e2 17       	cp	r30, r18
+ 24c:	f3 07       	cpc	r31, r19
+ 24e:	d9 f7       	brne	.-10     	; 0x246 <init_func+0x20>
+ 250:	e4 e7       	ldi	r30, 0x74	; 116
+ 252:	f0 e0       	ldi	r31, 0x00	; 0
+ 254:	82 e8       	ldi	r24, 0x82	; 130
+ 256:	90 e0       	ldi	r25, 0x00	; 0
+	regB[i - 10] = key[i];
+
+	for (i = 0; i < 14; i++)
+	regC[i] = 0;
+ 258:	11 92       	st	Z+, r1
+	regA[i] = key[i];
+	
+	for (i = 10; i < 20; i++)
+	regB[i - 10] = key[i];
+
+	for (i = 0; i < 14; i++)
+ 25a:	8e 17       	cp	r24, r30
+ 25c:	9f 07       	cpc	r25, r31
+ 25e:	e1 f7       	brne	.-8      	; 0x258 <init_func+0x32>
+	regC[i] = 0;
+
+	regA[10] = 0;
+ 260:	e2 e8       	ldi	r30, 0x82	; 130
+ 262:	f0 e0       	ldi	r31, 0x00	; 0
+ 264:	12 86       	std	Z+10, r1	; 0x0a
+	regA[11] = 0;
+ 266:	13 86       	std	Z+11, r1	; 0x0b
+	regB[10] = 0;
+ 268:	10 92 98 00 	sts	0x0098, r1	; 0x800098 <regB+0xa>
+	regC[13] = 0x07;
+ 26c:	87 e0       	ldi	r24, 0x07	; 7
+ 26e:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__data_end+0xd>
+ 272:	08 95       	ret
+
+00000274 <warmup_func>:
+}
+
+void warmup_func()
+{
+ 274:	cf 93       	push	r28
+ 276:	df 93       	push	r29
+ 278:	c0 e8       	ldi	r28, 0x80	; 128
+ 27a:	d4 e0       	ldi	r29, 0x04	; 4
+	int i = 0;
+	for (i = 0; i < 1152; i++)
+	clock_func();
+ 27c:	0e 94 ce 00 	call	0x19c	; 0x19c <clock_func>
+ 280:	21 97       	sbiw	r28, 0x01	; 1
+}
+
+void warmup_func()
+{
+	int i = 0;
+	for (i = 0; i < 1152; i++)
+ 282:	e1 f7       	brne	.-8      	; 0x27c <warmup_func+0x8>
+	clock_func();
+}
+ 284:	df 91       	pop	r29
+ 286:	cf 91       	pop	r28
+ 288:	08 95       	ret
+
+0000028a <encrypt>:
+
+char encrypt(char input)
+{
+ 28a:	ef 92       	push	r14
+ 28c:	ff 92       	push	r15
+ 28e:	0f 93       	push	r16
+ 290:	1f 93       	push	r17
+ 292:	cf 93       	push	r28
+ 294:	df 93       	push	r29
+ 296:	08 2f       	mov	r16, r24
+	char output = 0;
+	int i = 0;
+	bool bit;
+
+	for (i = 0; i < 8; i++)
+ 298:	c0 e0       	ldi	r28, 0x00	; 0
+ 29a:	d0 e0       	ldi	r29, 0x00	; 0
+	clock_func();
+}
+
+char encrypt(char input)
+{
+	char output = 0;
+ 29c:	10 e0       	ldi	r17, 0x00	; 0
+
+	for (i = 0; i < 8; i++)
+	{
+		bit = clock_func();
+		if (bit)
+		output |= (0x80>>i);
+ 29e:	68 94       	set
+ 2a0:	ee 24       	eor	r14, r14
+ 2a2:	e7 f8       	bld	r14, 7
+ 2a4:	f1 2c       	mov	r15, r1
+	int i = 0;
+	bool bit;
+
+	for (i = 0; i < 8; i++)
+	{
+		bit = clock_func();
+ 2a6:	0e 94 ce 00 	call	0x19c	; 0x19c <clock_func>
+		if (bit)
+ 2aa:	88 23       	and	r24, r24
+ 2ac:	41 f0       	breq	.+16     	; 0x2be <encrypt+0x34>
+		output |= (0x80>>i);
+ 2ae:	c7 01       	movw	r24, r14
+ 2b0:	0c 2e       	mov	r0, r28
+ 2b2:	02 c0       	rjmp	.+4      	; 0x2b8 <encrypt+0x2e>
+ 2b4:	95 95       	asr	r25
+ 2b6:	87 95       	ror	r24
+ 2b8:	0a 94       	dec	r0
+ 2ba:	e2 f7       	brpl	.-8      	; 0x2b4 <encrypt+0x2a>
+ 2bc:	18 2b       	or	r17, r24
+{
+	char output = 0;
+	int i = 0;
+	bool bit;
+
+	for (i = 0; i < 8; i++)
+ 2be:	21 96       	adiw	r28, 0x01	; 1
+ 2c0:	c8 30       	cpi	r28, 0x08	; 8
+ 2c2:	d1 05       	cpc	r29, r1
+ 2c4:	81 f7       	brne	.-32     	; 0x2a6 <encrypt+0x1c>
+		output |= (0x80>>i);
+	}
+
+	output ^= input;
+	return output;
+ 2c6:	81 2f       	mov	r24, r17
+ 2c8:	80 27       	eor	r24, r16
+ 2ca:	df 91       	pop	r29
+ 2cc:	cf 91       	pop	r28
+ 2ce:	1f 91       	pop	r17
+ 2d0:	0f 91       	pop	r16
+ 2d2:	ff 90       	pop	r15
+ 2d4:	ef 90       	pop	r14
+ 2d6:	08 95       	ret
+
+000002d8 <UART_SetBaudRate>:
+#include "uart.h"
+
+void UART_SetBaudRate(uint32_t v_baudRate_u32)
+{
+ 2d8:	0f 93       	push	r16
+ 2da:	1f 93       	push	r17
+ 2dc:	8b 01       	movw	r16, r22
+ 2de:	9c 01       	movw	r18, r24
+	uint16_t RegValue;
+
+	if((v_baudRate_u32 >= C_MinBaudRate_U32) && (v_baudRate_u32<=C_MaxBaudRate_U32))
+ 2e0:	dc 01       	movw	r26, r24
+ 2e2:	cb 01       	movw	r24, r22
+ 2e4:	80 56       	subi	r24, 0x60	; 96
+ 2e6:	99 40       	sbci	r25, 0x09	; 9
+ 2e8:	a1 09       	sbc	r26, r1
+ 2ea:	b1 09       	sbc	r27, r1
+ 2ec:	81 3a       	cpi	r24, 0xA1	; 161
+ 2ee:	98 4b       	sbci	r25, 0xB8	; 184
+ 2f0:	a1 40       	sbci	r26, 0x01	; 1
+ 2f2:	b1 05       	cpc	r27, r1
+ 2f4:	68 f5       	brcc	.+90     	; 0x350 <UART_SetBaudRate+0x78>
+	{
+		/* Check if the requested baudate is within range,
+	     If yes then calculate the value to be loaded into baud rate generator. */
+		RegValue = M_GetBaudRateGeneratorValue(v_baudRate_u32);
+ 2f6:	80 e0       	ldi	r24, 0x00	; 0
+ 2f8:	90 e0       	ldi	r25, 0x00	; 0
+ 2fa:	dc 01       	movw	r26, r24
+ 2fc:	80 1b       	sub	r24, r16
+ 2fe:	91 0b       	sbc	r25, r17
+ 300:	a2 0b       	sbc	r26, r18
+ 302:	b3 0b       	sbc	r27, r19
+ 304:	88 0f       	add	r24, r24
+ 306:	99 1f       	adc	r25, r25
+ 308:	aa 1f       	adc	r26, r26
+ 30a:	bb 1f       	adc	r27, r27
+ 30c:	88 0f       	add	r24, r24
+ 30e:	99 1f       	adc	r25, r25
+ 310:	aa 1f       	adc	r26, r26
+ 312:	bb 1f       	adc	r27, r27
+ 314:	88 0f       	add	r24, r24
+ 316:	99 1f       	adc	r25, r25
+ 318:	aa 1f       	adc	r26, r26
+ 31a:	bb 1f       	adc	r27, r27
+ 31c:	bc 01       	movw	r22, r24
+ 31e:	cd 01       	movw	r24, r26
+ 320:	7e 5e       	subi	r23, 0xEE	; 238
+ 322:	85 48       	sbci	r24, 0x85	; 133
+ 324:	9f 4f       	sbci	r25, 0xFF	; 255
+ 326:	00 0f       	add	r16, r16
+ 328:	11 1f       	adc	r17, r17
+ 32a:	22 1f       	adc	r18, r18
+ 32c:	33 1f       	adc	r19, r19
+ 32e:	00 0f       	add	r16, r16
+ 330:	11 1f       	adc	r17, r17
+ 332:	22 1f       	adc	r18, r18
+ 334:	33 1f       	adc	r19, r19
+ 336:	a9 01       	movw	r20, r18
+ 338:	98 01       	movw	r18, r16
+ 33a:	22 0f       	add	r18, r18
+ 33c:	33 1f       	adc	r19, r19
+ 33e:	44 1f       	adc	r20, r20
+ 340:	55 1f       	adc	r21, r21
+ 342:	22 0f       	add	r18, r18
+ 344:	33 1f       	adc	r19, r19
+ 346:	44 1f       	adc	r20, r20
+ 348:	55 1f       	adc	r21, r21
+ 34a:	0e 94 bf 01 	call	0x37e	; 0x37e <__udivmodsi4>
+ 34e:	02 c0       	rjmp	.+4      	; 0x354 <UART_SetBaudRate+0x7c>
+	}
+	else
+	{
+		/*	 Invalid baudrate requested, hence set it to default baudrate of 9600 */
+		RegValue = M_GetBaudRateGeneratorValue(9600);
+ 350:	23 e3       	ldi	r18, 0x33	; 51
+ 352:	30 e0       	ldi	r19, 0x00	; 0
+	}
+
+	UBRRL = util_ExtractByte0to8(RegValue);
+ 354:	29 b9       	out	0x09, r18	; 9
+	UBRRH = util_ExtractByte8to16(RegValue);
+ 356:	30 bd       	out	0x20, r19	; 32
+}
+ 358:	1f 91       	pop	r17
+ 35a:	0f 91       	pop	r16
+ 35c:	08 95       	ret
+
+0000035e <UART_Init>:
+
+void UART_Init(uint32_t v_baudRate_u32)
+{
+	UCSRB= (1<<RXEN) | (1<<TXEN);                  // Enable Receiver and Transmitter
+ 35e:	28 e1       	ldi	r18, 0x18	; 24
+ 360:	2a b9       	out	0x0a, r18	; 10
+	UCSRC= (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);   // Asynchronous mode 8-bit data and 1-stop bit
+ 362:	26 e8       	ldi	r18, 0x86	; 134
+ 364:	20 bd       	out	0x20, r18	; 32
+	UCSRA= 0x00;                                   // Clear the UASRT status register
+ 366:	1b b8       	out	0x0b, r1	; 11
+	UART_SetBaudRate(v_baudRate_u32);
+ 368:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <UART_SetBaudRate>
+ 36c:	08 95       	ret
+
+0000036e <UART_RxChar>:
+}
+
+char UART_RxChar(void)
+{
+	while(util_IsBitCleared(UCSRA,RXC));  // Wait till the data is received
+ 36e:	5f 9b       	sbis	0x0b, 7	; 11
+ 370:	fe cf       	rjmp	.-4      	; 0x36e <UART_RxChar>
+	return(UDR);                          // return the received char
+ 372:	8c b1       	in	r24, 0x0c	; 12
+}
+ 374:	08 95       	ret
+
+00000376 <UART_TxChar>:
+
+void UART_TxChar(char v_uartData_u8)
+{
+	while(util_IsBitCleared(UCSRA,UDRE)); // Wait till Transmitter(UDR) register becomes Empty
+ 376:	5d 9b       	sbis	0x0b, 5	; 11
+ 378:	fe cf       	rjmp	.-4      	; 0x376 <UART_TxChar>
+	UDR =v_uartData_u8;                              // Load the data to be transmitted
+ 37a:	8c b9       	out	0x0c, r24	; 12
+ 37c:	08 95       	ret
+
+0000037e <__udivmodsi4>:
+ 37e:	a1 e2       	ldi	r26, 0x21	; 33
+ 380:	1a 2e       	mov	r1, r26
+ 382:	aa 1b       	sub	r26, r26
+ 384:	bb 1b       	sub	r27, r27
+ 386:	fd 01       	movw	r30, r26
+ 388:	0d c0       	rjmp	.+26     	; 0x3a4 <__udivmodsi4_ep>
+
+0000038a <__udivmodsi4_loop>:
+ 38a:	aa 1f       	adc	r26, r26
+ 38c:	bb 1f       	adc	r27, r27
+ 38e:	ee 1f       	adc	r30, r30
+ 390:	ff 1f       	adc	r31, r31
+ 392:	a2 17       	cp	r26, r18
+ 394:	b3 07       	cpc	r27, r19
+ 396:	e4 07       	cpc	r30, r20
+ 398:	f5 07       	cpc	r31, r21
+ 39a:	20 f0       	brcs	.+8      	; 0x3a4 <__udivmodsi4_ep>
+ 39c:	a2 1b       	sub	r26, r18
+ 39e:	b3 0b       	sbc	r27, r19
+ 3a0:	e4 0b       	sbc	r30, r20
+ 3a2:	f5 0b       	sbc	r31, r21
+
+000003a4 <__udivmodsi4_ep>:
+ 3a4:	66 1f       	adc	r22, r22
+ 3a6:	77 1f       	adc	r23, r23
+ 3a8:	88 1f       	adc	r24, r24
+ 3aa:	99 1f       	adc	r25, r25
+ 3ac:	1a 94       	dec	r1
+ 3ae:	69 f7       	brne	.-38     	; 0x38a <__udivmodsi4_loop>
+ 3b0:	60 95       	com	r22
+ 3b2:	70 95       	com	r23
+ 3b4:	80 95       	com	r24
+ 3b6:	90 95       	com	r25
+ 3b8:	9b 01       	movw	r18, r22
+ 3ba:	ac 01       	movw	r20, r24
+ 3bc:	bd 01       	movw	r22, r26
+ 3be:	cf 01       	movw	r24, r30
+ 3c0:	08 95       	ret
+
+000003c2 <_exit>:
+ 3c2:	f8 94       	cli
+
+000003c4 <__stop_program>:
+ 3c4:	ff cf       	rjmp	.-2      	; 0x3c4 <__stop_program>
