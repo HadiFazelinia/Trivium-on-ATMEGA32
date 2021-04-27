@@ -41,5 +41,3 @@ P.S.: You can send the data to real-port. All you need to do is set COMPIM devic
 
 ---
 This was our final project in Microcontroller course.
-
-**Hadi Fazelinia** & **Mohammad Hussain Asghari**
